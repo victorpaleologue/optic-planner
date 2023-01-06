@@ -39,7 +39,6 @@ add_custom_command(
         ${CMAKE_CURRENT_SOURCE_DIR}/fixyywrap ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-message(STATUS "Including flex: ${FLEX_INCLUDE_DIRS}")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${FLEX_INCLUDE_DIRS})
 
 set(libParsePDDL_SRCS
@@ -48,3 +47,4 @@ set(libParsePDDL_SRCS
 
 
 add_library(ParsePDDL STATIC ${libParsePDDL_SRCS})
+target_link_libraries(ParsePDDL ${FLEX_LIBRARIES})
