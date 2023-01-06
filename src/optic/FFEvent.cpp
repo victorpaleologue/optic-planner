@@ -181,7 +181,7 @@ void FFEvent::printPlan(const list<FFEvent> & toPrint)
     tms refReturn;
     times(&refReturn);
     
-    double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime) / ((double) sysconf(_SC_CLK_TCK));
+    double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime) / ((double) CLOCKS_PER_SEC);
 
     int twodp = (int)(secs * 100.0);
     int wholesecs = twodp / 100;
