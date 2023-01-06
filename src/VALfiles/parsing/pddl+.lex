@@ -12,6 +12,7 @@ extern "C" int yywrap();
 
 %}
 %option case-insensitive
+%option noyywrap
 
 char [a-zA-Z_]
 digit [0-9]
@@ -137,7 +138,7 @@ at_time "at"{whitespace}{float}
           }
 
 
-{string} {unsigned int i; 
+{string} {unsigned int i;
           yylval.cp = new char[strlen(yytext)+1];
           strcpy(yylval.cp,yytext);
 	  for(i = 0;i<strlen(yylval.cp);i++)
@@ -157,6 +158,6 @@ at_time "at"{whitespace}{float}
 {int} {yylval.ival = atoi(yytext);return (INTVAL);}
 {float} {yylval.fval = atof(yytext);return (FLOATVAL);}
 
-%% 
+%%
 
 
