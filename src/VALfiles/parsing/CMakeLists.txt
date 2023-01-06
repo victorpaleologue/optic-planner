@@ -9,7 +9,7 @@ if(NOT EXISTS ${BISON_EXECUTABLE})
 endif(NOT EXISTS ${BISON_EXECUTABLE})
 
 
-FIND_PROGRAM(FLEX_EXECUTABLE flex)
+find_package(FLEX REQUIRED)
 
 if(NOT EXISTS ${FLEX_EXECUTABLE})
         message("Could not find flex executable.")
@@ -39,11 +39,12 @@ add_custom_command(
         ${CMAKE_CURRENT_SOURCE_DIR}/fixyywrap ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+message(STATUS "Including flex: ${FLEX_INCLUDE_DIRS}")
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${FLEX_INCLUDE_DIRS})
 
 set(libParsePDDL_SRCS
       pddl+.cpp ptree.cpp DebugWriteController.cpp
 )
 
-add_library(ParsePDDL STATIC ${libParsePDDL_SRCS})
 
+add_library(ParsePDDL STATIC ${libParsePDDL_SRCS})
