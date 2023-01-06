@@ -24,7 +24,11 @@ if(STATIC_OPTIC)
 set(CMAKE_CXX_LINK_FLAGS "-static ${CMAKE_CXX_LINK_FLAGS}")
 endif(STATIC_OPTIC)
 
-include_directories(${val_SOURCE_DIR} ${val_SOURCE_DIR}/parsing ${val_BINARY_DIR} ${CLP_INCLUDES}/coin ${CBC_INCLUDES}/coin ${CPLEX_INCLUDES} ${CONCERT_INCLUDES}  ${GSL_INCLUDES})
+find_package(FLEX REQUIRED)
+include_directories(${val_SOURCE_DIR} ${val_SOURCE_DIR}/parsing ${val_BINARY_DIR}
+    ${COINUTILS_INCLUDES}/coin ${CLP_INCLUDES}/coin ${CBC_INCLUDES}/coin ${OSI_INCLUDES}/coin
+    ${CPLEX_INCLUDES} ${CONCERT_INCLUDES} ${GSL_INCLUDES} ${FLEX_INCLUDE_DIRS}
+)
 
 set(optic_build_srcs
     compressionsafescheduler.cpp

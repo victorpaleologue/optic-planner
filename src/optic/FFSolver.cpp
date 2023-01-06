@@ -5898,7 +5898,7 @@ list<FFEvent> * FF::doBenchmark(bool & reachedGoal, list<FFEvent> * oldSoln, con
         times(&refReturn);
 
         if (doLoops) {
-            double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime - (double)before.tms_utime - (double)before.tms_stime) / ((double) sysconf(_SC_CLK_TCK));
+            double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime - (double)before.tms_utime - (double)before.tms_stime) / ((double) CLOCKS_PER_SEC);
 
             int threedp = (int)(secs * 1000.0);
             int wholesecs = threedp / 1000;
@@ -6395,7 +6395,7 @@ Solution FF::search(bool & reachedGoal)
 
             tms refReturn;
             times(&refReturn);
-            double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime) / ((double) sysconf(_SC_CLK_TCK));
+            double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime) / ((double) CLOCKS_PER_SEC);
 
             if (secs >= Globals::timeLimit) {
                 std::cerr << "\n\nTime limit reached: terminating\n";
@@ -6860,7 +6860,7 @@ Solution FF::search(bool & reachedGoal)
 
                 tms refReturn;
                 times(&refReturn);
-                double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime) / ((double) sysconf(_SC_CLK_TCK));
+                double secs = ((double)refReturn.tms_utime + (double)refReturn.tms_stime) / ((double) CLOCKS_PER_SEC);
 
                 if (secs >= Globals::timeLimit) {
                     std::cerr << "\n\nTime limit reached: terminating\n";
