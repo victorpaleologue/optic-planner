@@ -1378,6 +1378,11 @@ struct getConditionally {
 		return pit != x.pit;
 	};
 
+	using difference_type = std::ptrdiff_t;
+	using value_type = TI;
+	using pointer = TI*;
+	using reference = TI&;
+	using iterator_category = std::input_iterator_tag;
 };
 
 template<class TI>
