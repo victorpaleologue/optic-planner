@@ -35,6 +35,19 @@ sudo apt install cmake coinor-libcbc-dev coinor-libclp-dev \
                      coinor-libcoinutils-dev libbz2-dev bison flex
 ```
 
+### Alternative: Conan Build
+
+Make sure to be able to build CMake / C++ projects. On Ubuntu:
+```bash
+sudo apt install build-essentials
+```
+
+To build with Conan, you will need to install conan first, using pip:
+```bash
+pip install --user conan
+```
+Make sure to have `~/.local/bin` in your `PATH` for the next steps.
+
 ## Compiling
 
 Compilation is in two stages:
@@ -59,7 +72,6 @@ Run one of:
   and producing a statically linked binary.    It assumes you are using the
   32-bit version of CPLEX, on Linux - if this is not the case, edit the
   script.
-
 
 Note that if you want to make static binaries with CLP, you must have static
 versions of the CLP libraries installed.  This may mean downloading and
@@ -107,6 +119,18 @@ In all three cases, the binaries produced will be called optic-clp and/or
 optic-cplex, and they will be located in either debug/optic, release/optic
 or static/optic, respectively.
 
+### Alternative: Conan Build
+
+Create a build dir. For instance to do it along the lines of a static build
+using `run-cmake-static`:
+```bash
+mkdir static
+conan install src -if static -b missing
+cmake -DSTATIC_OPTIC=TRUE -DCMAKE_BUILD_TYPE=Release -B static src
+cmake --build static --target parser optic-clp
+```
+`optic-clp` can then be found under `static/optic`.
+Note that this does build does the CPLEX version.
 
 ## Running
 
