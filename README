@@ -124,10 +124,10 @@ or static/optic, respectively.
 Create a build dir. For instance to do it along the lines of a static build
 using `run-cmake-static`:
 ```bash
-mkdir static
-conan install src -if static -b missing
-cmake -DSTATIC_OPTIC=TRUE -DCMAKE_BUILD_TYPE=Release -B static src
-cmake --build static --target parser optic-clp
+mkdir static # Prepares a build dir
+conan install src -if static -b missing # Installs dependencies locally for building
+cmake -DSTATIC_OPTIC=TRUE -DCMAKE_BUILD_TYPE=Release -B static src # Configure static build
+cmake --build static --target parser optic-clp # Build optic-clp specifically
 ```
 `optic-clp` can then be found under `static/optic`.
 Note that this does build does the CPLEX version.
