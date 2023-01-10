@@ -1,2 +1,5 @@
 .vscode/
 build*/
+debug/
+static/
+release/
